@@ -37,4 +37,9 @@ public abstract class Chaincode extends ChaincodeBase {
 		}
 		return s;
 	}
+	
+	 @Override
+	 public String query(ChaincodeStub stub, String function, String[] args) {
+		 return handleQuery(stub, args);
+	 }
 }
