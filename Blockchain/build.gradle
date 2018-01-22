@@ -26,6 +26,23 @@ repositories {
 
 
 mainClassName="voting.blockchain.Main"
+
+jar.doFirst {
+    destinationDir=file("${buildDir}")
+    manifest {
+        attributes (
+        'Main-Class': mainClassName,
+        'Class-Path': configurations.runtime.collect { "libs/"+"$it.name" }.join(' ')
+        )
+    }
+}
+
+task copyToLib(type: Copy) {
+    into "$buildDir/libs"
+    from configurations.runtime
+}
+build.finalizedBy(copyToLib)
+
 dependencies {
 
     compile 'io.grpc:grpc-all:0.13.2'
