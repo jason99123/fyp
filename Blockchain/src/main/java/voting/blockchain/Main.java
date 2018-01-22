@@ -4,6 +4,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hyperledger.java.shim.ChaincodeStub;
 
+
 public class Main extends Chaincode{
 	
 	private final static Log log = LogFactory.getLog(Main.class);
@@ -13,7 +14,7 @@ public class Main extends Chaincode{
 	public final static String PREFIX = chaincodeID + "-CLSC-";
 	
 	public static void main(String [] args) {
-		System.out.print("ok");
+		new Main().start(args);
 	}
 	
 	public String getChaincodeID() {
@@ -39,14 +40,29 @@ public class Main extends Chaincode{
 
 	@Override
 	protected String handleQuery(ChaincodeStub stub, String[] args) {
-		// TODO Auto-generated method stub
-		return null;
+		StringBuilder s = new StringBuilder();
+		for (String key : args) {
+			String prefixKey = PREFIX+key;
+			String value = stub.getState(prefixKey);
+			log.info("Query: "+prefixKey+" Value: "+value);
+			s.append(value);
+		}
+		return s.toString();
+		
 	}
 
 	@Override
-	protected String handleOther(ChaincodeStub stub, String function, String[] args) {
-		// TODO Auto-generated method stub
-		return null;
+	protected String handleOther(ChaincodeStub stub, String func, String[] args) {
+		String s;
+		switch (func) {
+		case "log":
+			s = handleLog(stub, args);
+			break;
+		default:
+			s = "Function not found: "+func;
+			break;
+		}
+		return s;
 	}
 
 	
