@@ -14,7 +14,36 @@ public class Main extends Chaincode{
 	public final static String PREFIX = chaincodeID + "-CLSC-";
 	
 	public static void main(String [] args) {
-		new Main().start(args);
+		//new Main().start(args);
+		Login login = new Login();
+	}
+	
+	public static boolean verifyLogin(String user, String pw) {
+		boolean check = false;
+		
+		if (user.equals("user")&&pw.equals("pw")) {
+			check = true;
+		} else {
+			check = false;
+		}
+		
+		return check;	
+	}
+
+/*	private static void VerifyUser() {
+		Login login = new Login();
+		boolean check = false;
+		while (check == false) {
+			String user;
+			user = login.readUser();
+			String pw;
+			pw = login.readPw();
+			check = login.VerifyAccount(user,pw);
+		} 
+	}
+*/
+	public static void afterLogin() {
+		System.out.println("ok");
 	}
 	
 	public String getChaincodeID() {
