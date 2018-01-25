@@ -14,7 +14,7 @@ public class Main extends Chaincode{
 	public final static String PREFIX = chaincodeID + "-CLSC-";
 	
 	public static void main(String [] args) {
-		//new Main().start(args);
+		new Main().start(args);
 		Login login = new Login();
 	}
 	
