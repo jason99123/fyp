@@ -18,6 +18,14 @@ public class Main extends Chaincode{
 		Login login = new Login();
 	}
 	
+	private static void getVote() {
+		Vote vote = new Vote();
+		int choice = 0;
+		choice = vote.acceptVote();
+		System.out.println("Vote "+choice);
+		
+	}
+
 	public static boolean verifyLogin(String user, String pw) {
 		boolean check = false;
 		
@@ -43,6 +51,7 @@ public class Main extends Chaincode{
 	}
 */
 	public static void afterLogin() {
+		getVote();
 		System.out.println("ok");
 	}
 	
