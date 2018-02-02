@@ -14,7 +14,7 @@ public class Login extends JFrame{
 	JPasswordField pwfield = new JPasswordField(15);
 	
 	
-	Login(){
+	public Login(){
 		super("Login Autentification");
 		setSize(300,200);
 		setLocation(500,280);

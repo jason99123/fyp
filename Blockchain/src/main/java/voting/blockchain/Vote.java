@@ -13,6 +13,7 @@ import java.util.Set;
 public class Vote {
 
 	HashMap<Integer, String> hmap = new HashMap<Integer, String>();
+	String candidatepath = "./resources/main/candidate.txt";
 	
 	public int acceptVote() {
 		getCandidate();
@@ -22,7 +23,7 @@ public class Vote {
 		return vote;
 	}
 
-	private int getVote() {
+	public int getVote() {
 		Scanner in = new Scanner(System.in);
 		String line;
 		line = in.nextLine();
@@ -49,7 +50,7 @@ public class Vote {
 		BufferedReader br = null;
 		try {
 			String line;
-			br = new BufferedReader(new FileReader("./resources/main/candidate.txt"));
+			br = new BufferedReader(new FileReader(candidatepath));
 			while ((line = br.readLine())!=null) {
 				String[] arr = line.split(",");
 				hmap.put(Integer.parseInt(arr[0]), arr[1]);
